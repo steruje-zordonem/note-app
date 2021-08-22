@@ -1,0 +1,21 @@
+.error {
+  color: red;
+  background: lightgrey;
+  font-size: 20px;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+h1, h2 {
+  color: rgb(48, 163, 3);
+}
+
+.toggle-importance-button {
+  margin-top: 25px;
+}
+
+.logged-user-info {
+  margin-bottom: 5px;
+}
