@@ -94,26 +94,22 @@ const App = () => {
   );
 
   const noteForm = () => (
-    <Togglable buttonLabel="new note" ref={noteFormRef}>
-      <NoteForm createNote={addNote} />
-    </Togglable>
+    <div>
+      <p className="logged-user-info">{user.name} logged-in</p>
+      <button type="button" onClick={handleLogoutBtn}>
+        logout
+      </button>
+      <Togglable buttonLabel="new note" ref={noteFormRef}>
+        <NoteForm createNote={addNote} />
+      </Togglable>
+    </div>
   );
 
   return (
     <div>
       <h1>Notes</h1>
       <Notification message={errorMessage} />
-      {user === null ? (
-        loginForm()
-      ) : (
-        <div>
-          <p className="logged-user-info">{user.name} logged-in</p>
-          <button type="button" onClick={handleLogoutBtn}>
-            logout
-          </button>
-          {noteForm()}
-        </div>
-      )}
+      {user === null ? loginForm() : noteForm()}
       <button
         className="toggle-importance-button"
         onClick={() => setShowAll(!showAll)}
