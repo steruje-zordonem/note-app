@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 const LoginForm = ({ logIntoApp }) => {
   const [username, setUsername] = useState('');
@@ -38,6 +39,10 @@ const LoginForm = ({ logIntoApp }) => {
       </form>
     </div>
   );
+};
+
+LoginForm.propTypes = {
+  logIntoApp: PropTypes.func.isRequired,
 };
 
 export default LoginForm;

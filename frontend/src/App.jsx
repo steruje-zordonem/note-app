@@ -55,7 +55,7 @@ const App = () => {
       .then((returnedNote) => {
         setNotes(notes.map((note) => (note.id !== id ? note : returnedNote)));
       })
-      .catch((error) => {
+      .catch(() => {
         setErrorMessage(
           `the note '${noteToUpdate.content}' was already deleted from server`
         );
@@ -70,10 +70,13 @@ const App = () => {
     const { username, password } = credentials;
 
     try {
-      const user = await loginService.login({ username, password });
-      window.localStorage.setItem('loggedNoteAppUser', JSON.stringify(user));
-      noteService.setToken(user.token);
-      setUser(user);
+      const loggedUser = await loginService.login({ username, password });
+      window.localStorage.setItem(
+        'loggedNoteAppUser',
+        JSON.stringify(loggedUser)
+      );
+      noteService.setToken(loggedUser.token);
+      setUser(loggedUser);
     } catch (exception) {
       setErrorMessage('Wrong credentials');
       setTimeout(() => {
@@ -111,6 +114,7 @@ const App = () => {
       <Notification message={errorMessage} />
       {user === null ? loginForm() : noteForm()}
       <button
+        type="button"
         className="toggle-importance-button"
         onClick={() => setShowAll(!showAll)}
       >
